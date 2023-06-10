@@ -59,6 +59,36 @@ class App extends Component {
     });
   };
 
+  handleSchoolChange = (e) => {
+    this.setState({
+      education: {
+        schoolName: e.target.value,
+        studyTitle: this.state.education.studyTitle,
+        date: this.state.education.date,
+      },
+    });
+  };
+
+  handleStudyChange = (e) => {
+    this.setState({
+      education: {
+        schoolName: this.state.education.schoolName,
+        studyTitle: e.target.value,
+        date: this.state.education.date,
+      },
+    });
+  };
+
+  handleSchoolDateChange = (e) => {
+    this.setState({
+      education: {
+        schoolName: this.state.education.schoolName,
+        studyTitle: this.state.education.studyTitle,
+        date: e.target.value,
+      },
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -72,6 +102,9 @@ class App extends Component {
         <Education
           submitForm={this.onsSubmitEducation}
           education={this.state.education}
+          schoolChange={this.handleSchoolChange}
+          studyChange={this.handleStudyChange}
+          dateChange={this.handleSchoolDateChange}
         />
       </div>
     );
