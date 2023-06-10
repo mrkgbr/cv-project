@@ -2,6 +2,8 @@ import { Component } from "react";
 import "./App.css";
 import General from "./components/General";
 import Education from "./components/Education";
+import EduDisplay from "./components/EduDisplay";
+import uniqid from "uniqid";
 
 class App extends Component {
   constructor() {
@@ -9,23 +11,29 @@ class App extends Component {
 
     this.state = {
       general: { firstName: "", lastName: "", email: "" },
-      education: { schoolName: "", studyTitle: "", date: "" },
+      education: { id: uniqid(), schoolName: "", studyTitle: "", date: "" },
       educations: [],
-      experience: { company: "", position: "", task: "", start: "", end: "" },
+      experience: {
+        id: uniqid(),
+        company: "",
+        position: "",
+        task: "",
+        start: "",
+        end: "",
+      },
       experiences: [],
     };
   }
 
   onSubmitGeneral = (e) => {
     e.preventDefault();
-    console.log(this.state.general);
   };
 
   onsSubmitEducation = (e) => {
     e.preventDefault();
     this.setState({
       educations: this.state.educations.concat(this.state.education),
-      education: { schoolName: "", studyTitle: "", date: "" },
+      education: { id: uniqid(), schoolName: "", studyTitle: "", date: "" },
     });
   };
 
@@ -62,6 +70,7 @@ class App extends Component {
   handleSchoolChange = (e) => {
     this.setState({
       education: {
+        id: this.state.education.id,
         schoolName: e.target.value,
         studyTitle: this.state.education.studyTitle,
         date: this.state.education.date,
@@ -72,6 +81,7 @@ class App extends Component {
   handleStudyChange = (e) => {
     this.setState({
       education: {
+        id: this.state.education.id,
         schoolName: this.state.education.schoolName,
         studyTitle: e.target.value,
         date: this.state.education.date,
@@ -82,6 +92,7 @@ class App extends Component {
   handleSchoolDateChange = (e) => {
     this.setState({
       education: {
+        id: this.state.education.id,
         schoolName: this.state.education.schoolName,
         studyTitle: this.state.education.studyTitle,
         date: e.target.value,
@@ -106,6 +117,7 @@ class App extends Component {
           studyChange={this.handleStudyChange}
           dateChange={this.handleSchoolDateChange}
         />
+        <EduDisplay educations={this.state.educations} />
       </div>
     );
   }
