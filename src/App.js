@@ -1,48 +1,77 @@
 import { Component } from "react";
 import "./App.css";
-import Form from "./components/Form";
+import General from "./components/General";
+import Education from "./components/Education";
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      firstName: "",
-      lastName: "",
-      email: "",
+      general: { firstName: "", lastName: "", email: "" },
+      education: { schoolName: "", studyTitle: "", date: "" },
+      educations: [],
+      experience: { company: "", position: "", task: "", start: "", end: "" },
+      experiences: [],
     };
   }
 
-  onSubmitForm = (e) => {
+  onSubmitGeneral = (e) => {
     e.preventDefault();
+    console.log(this.state.general);
+  };
+
+  onsSubmitEducation = (e) => {
+    e.preventDefault();
+    this.setState({
+      educations: this.state.educations.concat(this.state.education),
+      education: { schoolName: "", studyTitle: "", date: "" },
+    });
   };
 
   handleFirstNameChange = (e) => {
-    e.preventDefault();
-    this.setState({ firstName: e.target.value });
+    this.setState({
+      general: {
+        firstName: e.target.value,
+        lastName: this.state.general.lastName,
+        email: this.state.general.email,
+      },
+    });
   };
 
   handleLastNameChange = (e) => {
-    e.preventDefault();
-    this.setState({ lastName: e.target.value });
+    this.setState({
+      general: {
+        firstName: this.state.general.firstName,
+        lastName: e.target.value,
+        email: this.state.general.email,
+      },
+    });
   };
 
   handleEmailChange = (e) => {
-    e.preventDefault();
-    this.setState({ email: e.target.value });
+    this.setState({
+      general: {
+        firstName: this.state.general.firstName,
+        lastName: this.state.general.lastName,
+        email: e.target.value,
+      },
+    });
   };
 
   render() {
     return (
       <div className="App">
-        <Form
-          submitForm={this.onSubmitForm}
-          email={this.state.email}
-          firstName={this.state.firstName}
-          lastName={this.state.lastName}
+        <General
+          submitForm={this.onSubmitGeneral}
+          general={this.state.general}
           firstNameChange={this.handleFirstNameChange}
           lastNameChange={this.handleLastNameChange}
           emailChange={this.handleEmailChange}
+        />
+        <Education
+          submitForm={this.onsSubmitEducation}
+          education={this.state.education}
         />
       </div>
     );
