@@ -1,34 +1,65 @@
-export default function General(props) {
-  const { submitForm, general, firstNameChange, lastNameChange, emailChange } =
-    props;
+import { Component } from "react";
 
-  return (
-    <form onSubmit={submitForm}>
-      <label htmlFor="firstName">First name:</label>
-      <input
-        type="text"
-        id="firstName"
-        value={general.firstName}
-        onChange={firstNameChange}
-        required
-      />
-      <label htmlFor="lastName">Last name:</label>
-      <input
-        type="text"
-        id="lastName"
-        value={general.lastName}
-        onChange={lastNameChange}
-        required
-      />
-      <label htmlFor="email">Email:</label>
-      <input
-        type="email"
-        id="email"
-        value={general.email}
-        onChange={emailChange}
-        required
-      />
-      <button type="submit">Submit</button>
-    </form>
-  );
+export default class General extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      isDisabled: false,
+      buttonText: "Save",
+    };
+  }
+
+  onButtonClick = (e) => {
+    let text = this.state.buttonText === "Save" ? "Edit" : "Save";
+    this.setState({
+      isDisabled: !this.state.isDisabled,
+      buttonText: text,
+    });
+  };
+
+  render() {
+    const {
+      submitForm,
+      general,
+      firstNameChange,
+      lastNameChange,
+      emailChange,
+    } = this.props;
+
+    return (
+      <form onSubmit={submitForm}>
+        <label htmlFor="firstName">First name:</label>
+        <input
+          type="text"
+          id="firstName"
+          value={general.firstName}
+          onChange={firstNameChange}
+          required
+          disabled={this.state.isDisabled}
+        />
+        <label htmlFor="lastName">Last name:</label>
+        <input
+          type="text"
+          id="lastName"
+          value={general.lastName}
+          onChange={lastNameChange}
+          required
+          disabled={this.state.isDisabled}
+        />
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          value={general.email}
+          onChange={emailChange}
+          required
+          disabled={this.state.isDisabled}
+        />
+        <button type="submit" onClick={this.onButtonClick}>
+          {this.state.buttonText}
+        </button>
+      </form>
+    );
+  }
 }
