@@ -9,6 +9,7 @@ export default function Education(props) {
         id="schoolName"
         value={education.schoolName}
         onChange={schoolChange}
+        required
       />
       <label htmlFor="studyTile">Title of study:</label>
       <input
@@ -16,6 +17,7 @@ export default function Education(props) {
         id="studyTitle"
         value={education.studyTitle}
         onChange={studyChange}
+        required
       />
       <label htmlFor="studyDate">Date of study:</label>
       <input
@@ -23,6 +25,7 @@ export default function Education(props) {
         id="studyDate"
         value={education.date}
         onChange={dateChange}
+        required
       />
       <button type="submit">Submit</button>
     </form>

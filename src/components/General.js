@@ -10,6 +10,7 @@ export default function General(props) {
         id="firstName"
         value={general.firstName}
         onChange={firstNameChange}
+        required
       />
       <label htmlFor="lastName">Last name:</label>
       <input
@@ -17,6 +18,7 @@ export default function General(props) {
         id="lastName"
         value={general.lastName}
         onChange={lastNameChange}
+        required
       />
       <label htmlFor="email">Email:</label>
       <input
@@ -24,6 +26,7 @@ export default function General(props) {
         id="email"
         value={general.email}
         onChange={emailChange}
+        required
       />
       <button type="submit">Submit</button>
     </form>
