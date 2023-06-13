@@ -1,8 +1,7 @@
 export default function Education(props) {
-  const { submitForm, education, schoolChange, studyChange, dateChange } =
-    props;
+  const { addForm, education, schoolChange, studyChange, dateChange } = props;
   return (
-    <form onSubmit={submitForm}>
+    <>
       <label htmlFor="schoolName">School name:</label>
       <input
         type="text"
@@ -27,7 +26,9 @@ export default function Education(props) {
         onChange={dateChange}
         required
       />
-      <button type="submit">Submit</button>
-    </form>
+      <button type="button" onClick={addForm}>
+        Add
+      </button>
+    </>
   );
 }

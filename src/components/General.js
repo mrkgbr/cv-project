@@ -19,16 +19,11 @@ export default class General extends Component {
   };
 
   render() {
-    const {
-      submitForm,
-      general,
-      firstNameChange,
-      lastNameChange,
-      emailChange,
-    } = this.props;
+    const { general, firstNameChange, lastNameChange, emailChange } =
+      this.props;
 
     return (
-      <form onSubmit={submitForm}>
+      <>
         <label htmlFor="firstName">First name:</label>
         <input
           type="text"
@@ -56,10 +51,7 @@ export default class General extends Component {
           required
           disabled={this.state.isDisabled}
         />
-        <button type="submit" onClick={this.onButtonClick}>
-          {this.state.buttonText}
-        </button>
-      </form>
+      </>
     );
   }
 }

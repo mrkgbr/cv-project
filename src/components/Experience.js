@@ -9,7 +9,7 @@ export default function Experience(props) {
     endChange,
   } = props;
   return (
-    <form onSubmit={submitForm}>
+    <>
       <label htmlFor="company">Company name:</label>
       <input
         type="text"
@@ -50,7 +50,7 @@ export default function Experience(props) {
         onChange={endChange}
         required
       />
-      <button type="submit">Submit</button>
-    </form>
+      <button type="button">Add</button>
+    </>
   );
 }
