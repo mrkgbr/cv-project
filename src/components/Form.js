@@ -26,38 +26,6 @@ export default class Form extends Component {
     };
   }
 
-  // General form functions
-
-  handleFirstNameChange = (e) => {
-    this.setState({
-      general: {
-        firstName: e.target.value,
-        lastName: this.state.general.lastName,
-        email: this.state.general.email,
-      },
-    });
-  };
-
-  handleLastNameChange = (e) => {
-    this.setState({
-      general: {
-        firstName: this.state.general.firstName,
-        lastName: e.target.value,
-        email: this.state.general.email,
-      },
-    });
-  };
-
-  handleEmailChange = (e) => {
-    this.setState({
-      general: {
-        firstName: this.state.general.firstName,
-        lastName: this.state.general.lastName,
-        email: e.target.value,
-      },
-    });
-  };
-
   // Education form functions
 
   onAddEducation = () => {
@@ -78,42 +46,8 @@ export default class Form extends Component {
     }
   };
 
-  handleSchoolChange = (e) => {
-    this.setState({
-      education: {
-        id: this.state.education.id,
-        schoolName: e.target.value,
-        studyTitle: this.state.education.studyTitle,
-        date: this.state.education.date,
-      },
-    });
-  };
-
-  handleStudyChange = (e) => {
-    this.setState({
-      education: {
-        id: this.state.education.id,
-        schoolName: this.state.education.schoolName,
-        studyTitle: e.target.value,
-        date: this.state.education.date,
-      },
-    });
-  };
-
-  handleSchoolDateChange = (e) => {
-    this.setState({
-      education: {
-        id: this.state.education.id,
-        schoolName: this.state.education.schoolName,
-        studyTitle: this.state.education.studyTitle,
-        date: e.target.value,
-      },
-    });
-  };
-
   // Work experience form functions
-  onSubmitExperience = (e) => {
-    e.preventDefault();
+  onAddExperience = () => {
     this.setState({
       experiences: this.state.experiences.concat(this.state.experience),
       experience: {
@@ -127,146 +61,63 @@ export default class Form extends Component {
     });
   };
 
-  handleCompanyChange = (e) => {
+  // Form input change handling
+  handleInputChange = (e) => {
+    const group = e.target.getAttribute("data-group");
+    const name = e.target.getAttribute("data-name");
     this.setState({
-      experience: {
-        id: this.state.experience.id,
-        company: e.target.value,
-        position: this.state.experience.position,
-        task: this.state.experience.task,
-        start: this.state.experience.start,
-        end: this.state.experience.end,
+      [group]: {
+        ...this.state[group],
+        [name]: e.target.value,
       },
     });
   };
 
-  handlePositionChange = (e) => {
-    this.setState({
-      experience: {
-        id: this.state.experience.id,
-        company: this.state.experience.company,
-        position: e.target.value,
-        task: this.state.experience.task,
-        start: this.state.experience.start,
-        end: this.state.experience.end,
-      },
-    });
-  };
-
-  handleTaskChange = (e) => {
-    this.setState({
-      experience: {
-        id: this.state.experience.id,
-        company: this.state.experience.company,
-        position: this.state.experience.position,
-        task: e.target.value,
-        start: this.state.experience.start,
-        end: this.state.experience.end,
-      },
-    });
-  };
-
-  handleExpStartChange = (e) => {
-    this.setState({
-      experience: {
-        id: this.state.experience.id,
-        company: this.state.experience.company,
-        position: this.state.experience.position,
-        task: this.state.experience.task,
-        start: e.target.value,
-        end: this.state.experience.end,
-      },
-    });
-  };
-
-  handleExpEndChange = (e) => {
-    this.setState({
-      experience: {
-        id: this.state.experience.id,
-        company: this.state.experience.company,
-        position: this.state.experience.position,
-        task: this.state.experience.task,
-        start: this.state.experience.start,
-        end: e.target.value,
-      },
-    });
-  };
-
-  handleEduDisplaySchoolChange = (e) => {
-    const eduID = e.target.getAttribute("data-id");
-    const newState = this.state.educations.map((edu) => {
-      if (edu.id === eduID) {
-        return { ...edu, schoolName: e.target.value };
+  // Display input change handling
+  handleDisplayedListChange = (e) => {
+    const id = e.target.getAttribute("data-id");
+    const group = e.target.getAttribute("data-group");
+    const name = e.target.getAttribute("data-name");
+    const newState = this.state[group].map((obj) => {
+      if (obj.id === id) {
+        return { ...obj, [name]: e.target.value };
       }
-      return edu;
+      return obj;
     });
     this.setState({
-      educations: newState,
-    });
-  };
-
-  handleEduDisplayStudyChange = (e) => {
-    const eduID = e.target.getAttribute("data-id");
-    const newState = this.state.educations.map((edu) => {
-      if (edu.id === eduID) {
-        return { ...edu, studyTitle: e.target.value };
-      }
-      return edu;
-    });
-    this.setState({
-      educations: newState,
-    });
-  };
-
-  handleEduDisplayDateChange = (e) => {
-    const eduID = e.target.getAttribute("data-id");
-    const newState = this.state.educations.map((edu) => {
-      if (edu.id === eduID) {
-        return { ...edu, date: e.target.value };
-      }
-      return edu;
-    });
-    this.setState({
-      educations: newState,
+      [group]: newState,
     });
   };
 
   // Render page
   render() {
+    console.log(this.state.experiences);
     return (
       <div className="App">
         <p>All field must be filled for submitting CV.</p>
         <form>
           <General
             general={this.state.general}
-            firstNameChange={this.handleFirstNameChange}
-            lastNameChange={this.handleLastNameChange}
-            emailChange={this.handleEmailChange}
+            handleChange={this.handleInputChange}
           />
           <Education
             addForm={this.onAddEducation}
             education={this.state.education}
-            schoolChange={this.handleSchoolChange}
-            studyChange={this.handleStudyChange}
-            dateChange={this.handleSchoolDateChange}
+            handleChange={this.handleInputChange}
           />
           <EduDisplay
             educations={this.state.educations}
-            schoolChange={this.handleEduDisplaySchoolChange}
-            studyChange={this.handleEduDisplayStudyChange}
-            dateChange={this.handleEduDisplayDateChange}
+            handleChange={this.handleDisplayedListChange}
           />
           <Experience
-            submitForm={this.onSubmitExperience}
+            addForm={this.onAddExperience}
             experience={this.state.experience}
-            companyChange={this.handleCompanyChange}
-            positionChange={this.handlePositionChange}
-            taskChange={this.handleTaskChange}
-            startChange={this.handleExpStartChange}
-            endChange={this.handleExpEndChange}
+            handleChange={this.handleInputChange}
           />
-          <ExpDisplay experiences={this.state.experiences} />
-          <button type="submit">Submit</button>
+          <ExpDisplay
+            experiences={this.state.experiences}
+            handleChange={this.handleDisplayedListChange}
+          />
         </form>
       </div>
     );

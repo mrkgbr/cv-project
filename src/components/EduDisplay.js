@@ -1,5 +1,5 @@
 export default function EduDisplay(props) {
-  const { educations, schoolChange, studyChange, dateChange } = props;
+  const { educations, handleChange } = props;
   let newArr = educations;
   if (newArr.length === 0) {
     return;
@@ -15,19 +15,25 @@ export default function EduDisplay(props) {
                 type="text"
                 value={education.schoolName}
                 data-id={education.id}
-                onChange={schoolChange}
+                data-group="educations"
+                data-name="schoolName"
+                onChange={handleChange}
               />
               <input
                 type="text"
                 value={education.studyTitle}
                 data-id={education.id}
-                onChange={studyChange}
+                data-group="educations"
+                data-name="studyTitle"
+                onChange={handleChange}
               />
               <input
                 type="date"
                 value={education.date}
                 data-id={education.id}
-                onChange={dateChange}
+                data-group="educations"
+                data-name="date"
+                onChange={handleChange}
               />
             </div>
           </li>

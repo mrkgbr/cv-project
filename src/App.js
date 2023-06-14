@@ -1,6 +1,7 @@
 import { Component } from "react";
 import "./App.css";
 import Form from "./components/Form";
+import uniqid from "uniqid";
 
 class App extends Component {
   constructor() {
@@ -9,6 +10,18 @@ class App extends Component {
     this.state = {
       main: true,
       button: "Submit",
+      general: { firstName: "", lastName: "", email: "" },
+      education: { id: uniqid(), schoolName: "", studyTitle: "", date: "" },
+      educations: [],
+      experience: {
+        id: uniqid(),
+        company: "",
+        position: "",
+        task: "",
+        start: "",
+        end: "",
+      },
+      experiences: [],
     };
   }
 
@@ -34,7 +47,12 @@ class App extends Component {
           <button onClick={this.onSubmit}>{this.state.button}</button>
         </div>
       );
-    return <button onClick={this.onSubmit}>{this.state.button}</button>;
+    return (
+      <div>
+        {/* <Form /> */}
+        <button onClick={this.onSubmit}>{this.state.button}</button>
+      </div>
+    );
   }
 }
 

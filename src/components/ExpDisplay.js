@@ -1,16 +1,57 @@
 export default function ExpDisplay(props) {
-  const { experiences } = props;
+  const { experiences, handleChange } = props;
   let newArr = experiences;
   if (newArr.length === 0) {
     return;
   }
   return (
     <ul>
-      {experiences.map((experience) => {
+      {experiences.map((experience, index) => {
         return (
           <li key={experience.id}>
-            {experience.company} {experience.position} {experience.task}{" "}
-            {experience.start} {experience.end}
+            <h4>{index + 1}. school:</h4>
+            <div>
+              <input
+                type="text"
+                value={experience.company}
+                data-id={experience.id}
+                data-group="experiences"
+                data-name="company"
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                value={experience.position}
+                data-id={experience.id}
+                data-group="experiences"
+                data-name="position"
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                value={experience.task}
+                data-id={experience.id}
+                data-group="experiences"
+                data-name="task"
+                onChange={handleChange}
+              />
+              <input
+                type="date"
+                value={experience.start}
+                data-id={experience.id}
+                data-group="experiences"
+                data-name="start"
+                onChange={handleChange}
+              />
+              <input
+                type="date"
+                value={experience.end}
+                data-id={experience.id}
+                data-group="experiences"
+                data-name="end"
+                onChange={handleChange}
+              />
+            </div>
           </li>
         );
       })}

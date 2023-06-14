@@ -19,8 +19,7 @@ export default class General extends Component {
   };
 
   render() {
-    const { general, firstNameChange, lastNameChange, emailChange } =
-      this.props;
+    const { general, handleChange } = this.props;
 
     return (
       <>
@@ -28,8 +27,10 @@ export default class General extends Component {
         <input
           type="text"
           id="firstName"
+          data-name="firstName"
+          data-group="general"
           value={general.firstName}
-          onChange={firstNameChange}
+          onChange={handleChange}
           required
           disabled={this.state.isDisabled}
         />
@@ -37,8 +38,10 @@ export default class General extends Component {
         <input
           type="text"
           id="lastName"
+          data-name="lastName"
+          data-group="general"
           value={general.lastName}
-          onChange={lastNameChange}
+          onChange={handleChange}
           required
           disabled={this.state.isDisabled}
         />
@@ -46,8 +49,10 @@ export default class General extends Component {
         <input
           type="email"
           id="email"
+          data-name="email"
+          data-group="general"
           value={general.email}
-          onChange={emailChange}
+          onChange={handleChange}
           required
           disabled={this.state.isDisabled}
         />
