@@ -4,12 +4,13 @@ import Education from "./Education";
 import EduDisplay from "./EduDisplay";
 import Experience from "./Experience";
 import ExpDisplay from "./ExpDisplay";
+import "./Form.css";
 
 export default class Form extends Component {
   // Render page
   render() {
     return (
-      <div className="App">
+      <div className="Form">
         <p>All field must be filled for submitting CV.</p>
         <form>
           <General
@@ -24,6 +25,7 @@ export default class Form extends Component {
           <EduDisplay
             educations={this.props.educations}
             handleChange={this.props.handleDisplayedListChange}
+            handleRemove={this.props.handleRemove}
           />
           <Experience
             addForm={this.props.onAddExperience}
@@ -33,6 +35,7 @@ export default class Form extends Component {
           <ExpDisplay
             experiences={this.props.experiences}
             handleChange={this.props.handleDisplayedListChange}
+            handleRemove={this.props.handleRemove}
           />
         </form>
       </div>
