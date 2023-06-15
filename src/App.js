@@ -1,5 +1,4 @@
 import { Component } from "react";
-import "./App.css";
 import Form from "./components/Form";
 import uniqid from "uniqid";
 
@@ -99,11 +98,18 @@ class App extends Component {
     });
   };
 
+  handleRemove = (id, group) => {
+    const newState = this.state[group].filter((item) => item.id !== id);
+    this.setState({
+      [group]: newState,
+    });
+  };
+
   // Render page
   render() {
     if (this.state.main)
       return (
-        <div>
+        <div className="App">
           <Form
             general={this.state.general}
             education={this.state.education}
@@ -114,6 +120,7 @@ class App extends Component {
             onAddExperience={this.onAddExperience}
             handleInputChange={this.handleInputChange}
             handleDisplayedListChange={this.handleDisplayedListChange}
+            handleRemove={this.handleRemove}
           />
           <button onClick={this.onSubmit}>{this.state.button}</button>
         </div>
