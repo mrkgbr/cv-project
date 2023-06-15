@@ -1,5 +1,5 @@
 export default function ExpDisplay(props) {
-  const { experiences, handleChange } = props;
+  const { experiences, handleChange, handleRemove } = props;
   let newArr = experiences;
   if (newArr.length === 0) {
     return;
@@ -51,6 +51,12 @@ export default function ExpDisplay(props) {
                 data-name="end"
                 onChange={handleChange}
               />
+              <button
+                type="button"
+                onClick={() => handleRemove(experience.id, "experiences")}
+              >
+                Remove
+              </button>
             </div>
           </li>
         );

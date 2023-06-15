@@ -1,5 +1,5 @@
 export default function EduDisplay(props) {
-  const { educations, handleChange } = props;
+  const { educations, handleChange, handleRemove } = props;
   let newArr = educations;
   if (newArr.length === 0) {
     return;
@@ -35,6 +35,12 @@ export default function EduDisplay(props) {
                 data-name="date"
                 onChange={handleChange}
               />
+              <button
+                type="button"
+                onClick={() => handleRemove(education.id, "educations")}
+              >
+                Remove
+              </button>
             </div>
           </li>
         );
