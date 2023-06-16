@@ -13,7 +13,11 @@ export default class View extends Component {
           <Educations educations={this.props.educations} />
           <Experiences experiences={this.props.experiences} />
         </div>
-        <button type="button" onClick={this.props.handleClick}>
+        <button
+          type="button"
+          onClick={this.props.handleClick}
+          className="no-print"
+        >
           {this.props.buttonText}
         </button>
       </div>
