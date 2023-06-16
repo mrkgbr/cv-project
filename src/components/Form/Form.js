@@ -36,7 +36,7 @@ export default class Form extends Component {
             handleChange={this.props.handleDisplayedListChange}
             handleRemove={this.props.handleRemove}
           />
-          <button type="submit">Submit</button>
+          <button type="submit">{this.props.buttonText}</button>
         </form>
       </div>
     );

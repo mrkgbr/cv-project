@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Form from "./components/Form/Form";
 import uniqid from "uniqid";
+import View from "./components/View/View";
 
 class App extends Component {
   constructor() {
@@ -27,7 +28,7 @@ class App extends Component {
   onSubmit = () => {
     let button;
     if (this.state.button === "Submit") {
-      button = "Back";
+      button = "Edit";
     } else {
       button = "Submit";
     }
@@ -134,24 +135,20 @@ class App extends Component {
             handleDisplayedListChange={this.handleDisplayedListChange}
             handleRemove={this.handleRemove}
             onSubmit={this.onSubmit}
+            buttonText={this.state.button}
           />
           {/* <button onClick={this.onSubmit}>{this.state.button}</button> */}
         </div>
       );
     return (
       <div>
-        {/* <Form
+        <View
+          handleClick={this.onSubmit}
+          buttonText={this.state.button}
           general={this.state.general}
-          education={this.state.education}
           educations={this.state.educations}
-          experience={this.state.experience}
           experiences={this.state.experiences}
-          onAddEducation={this.onAddEducation}
-          onAddExperience={this.onAddExperience}
-          handleInputChange={this.handleInputChange}
-          handleDisplayedListChange={this.handleDisplayedListChange}
-        /> */}
-        {/* <button onClick={this.onSubmit}>{this.state.button}</button> */}
+        />
       </div>
     );
   }
