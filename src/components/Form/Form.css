@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   width: 300px;
-  padding: 30px;
   gap: 5px;
 }
 
@@ -14,6 +13,13 @@ ul {
   list-style-type: none;
   display: flex;
   flex-direction: column;
+  padding: 0;
+}
+
+li div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 input:invalid {

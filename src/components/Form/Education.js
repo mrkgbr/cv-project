@@ -2,6 +2,7 @@ export default function Education(props) {
   const { addForm, education, handleChange } = props;
   return (
     <>
+      <h3>Educations</h3>
       <label htmlFor="schoolName">School name:</label>
       <input
         type="text"
@@ -10,7 +11,6 @@ export default function Education(props) {
         data-group="education"
         value={education.schoolName}
         onChange={handleChange}
-        required
       />
       <label htmlFor="studyTile">Title of study:</label>
       <input
@@ -20,7 +20,6 @@ export default function Education(props) {
         data-group="education"
         value={education.studyTitle}
         onChange={handleChange}
-        required
       />
       <label htmlFor="studyDate">Date of study:</label>
       <input
@@ -30,7 +29,6 @@ export default function Education(props) {
         data-group="education"
         value={education.date}
         onChange={handleChange}
-        required
       />
       <button type="button" onClick={addForm}>
         Add

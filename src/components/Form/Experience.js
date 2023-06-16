@@ -2,6 +2,7 @@ export default function Experience(props) {
   const { experience, handleChange, addForm } = props;
   return (
     <>
+      <h3>Experiences</h3>
       <label htmlFor="company">Company name:</label>
       <input
         type="text"
@@ -10,7 +11,6 @@ export default function Experience(props) {
         onChange={handleChange}
         data-name="company"
         data-group="experience"
-        required
       />
       <label htmlFor="position">Position:</label>
       <input
@@ -20,17 +20,14 @@ export default function Experience(props) {
         data-group="experience"
         value={experience.position}
         onChange={handleChange}
-        required
       />
       <label htmlFor="task">Main task:</label>
-      <input
-        type="text"
+      <textarea
         id="task"
         data-name="task"
         data-group="experience"
         value={experience.task}
         onChange={handleChange}
-        required
       />
       <label htmlFor="start">Start date:</label>
       <input
@@ -40,7 +37,6 @@ export default function Experience(props) {
         data-group="experience"
         value={experience.start}
         onChange={handleChange}
-        required
       />
       <label htmlFor="end">End date:</label>
       <input
@@ -50,7 +46,6 @@ export default function Experience(props) {
         data-group="experience"
         value={experience.end}
         onChange={handleChange}
-        required
       />
       <button type="button" onClick={addForm}>
         Add

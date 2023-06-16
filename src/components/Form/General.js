@@ -23,6 +23,7 @@ export default class General extends Component {
 
     return (
       <>
+        <h3>General</h3>
         <label htmlFor="firstName">First name:</label>
         <input
           type="text"

@@ -9,7 +9,7 @@ export default function ExpDisplay(props) {
       {experiences.map((experience, index) => {
         return (
           <li key={experience.id}>
-            <h4>{index + 1}. school:</h4>
+            <h4>{index + 1}. experience:</h4>
             <div>
               <input
                 type="text"
@@ -27,8 +27,7 @@ export default function ExpDisplay(props) {
                 data-name="position"
                 onChange={handleChange}
               />
-              <input
-                type="text"
+              <textarea
                 value={experience.task}
                 data-id={experience.id}
                 data-group="experiences"

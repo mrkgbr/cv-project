@@ -1,5 +1,5 @@
 import { Component } from "react";
-import Form from "./components/Form";
+import Form from "./components/Form/Form";
 import uniqid from "uniqid";
 
 class App extends Component {
@@ -52,22 +52,34 @@ class App extends Component {
           date: "",
         },
       });
+    } else {
+      alert("Please fill all the inputs to add a new section.");
     }
   };
 
   // Work experience form functions
   onAddExperience = () => {
-    this.setState({
-      experiences: this.state.experiences.concat(this.state.experience),
-      experience: {
-        id: uniqid(),
-        company: "",
-        position: "",
-        task: "",
-        start: "",
-        end: "",
-      },
-    });
+    if (
+      this.state.experience.company &&
+      this.state.experience.position &&
+      this.state.experience.task &&
+      this.state.experience.start &&
+      this.state.experience.end
+    ) {
+      this.setState({
+        experiences: this.state.experiences.concat(this.state.experience),
+        experience: {
+          id: uniqid(),
+          company: "",
+          position: "",
+          task: "",
+          start: "",
+          end: "",
+        },
+      });
+    } else {
+      alert("Please fill all the inputs to add a new section.");
+    }
   };
 
   // Form input change handling
@@ -121,8 +133,9 @@ class App extends Component {
             handleInputChange={this.handleInputChange}
             handleDisplayedListChange={this.handleDisplayedListChange}
             handleRemove={this.handleRemove}
+            onSubmit={this.onSubmit}
           />
-          <button onClick={this.onSubmit}>{this.state.button}</button>
+          {/* <button onClick={this.onSubmit}>{this.state.button}</button> */}
         </div>
       );
     return (
@@ -138,7 +151,7 @@ class App extends Component {
           handleInputChange={this.handleInputChange}
           handleDisplayedListChange={this.handleDisplayedListChange}
         /> */}
-        <button onClick={this.onSubmit}>{this.state.button}</button>
+        {/* <button onClick={this.onSubmit}>{this.state.button}</button> */}
       </div>
     );
   }

@@ -11,8 +11,7 @@ export default class Form extends Component {
   render() {
     return (
       <div className="Form">
-        <p>All field must be filled for submitting CV.</p>
-        <form>
+        <form onSubmit={this.props.onSubmit}>
           <General
             general={this.props.general}
             handleChange={this.props.handleInputChange}
@@ -37,6 +36,7 @@ export default class Form extends Component {
             handleChange={this.props.handleDisplayedListChange}
             handleRemove={this.props.handleRemove}
           />
+          <button type="submit">Submit</button>
         </form>
       </div>
     );
