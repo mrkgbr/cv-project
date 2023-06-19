@@ -1,12 +1,9 @@
 export default function EduDisplay(props) {
-  const { educations, handleChange, handleRemove } = props;
-  let newArr = educations;
-  if (newArr.length === 0) {
-    return;
-  }
+  const { data, handleChange, handleRemove } = props;
+
   return (
     <ul>
-      {educations.map((education, index) => {
+      {data.educations.map((education, index) => {
         return (
           <li key={education.id}>
             <h4>{index + 1}. school:</h4>

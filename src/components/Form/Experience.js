@@ -1,5 +1,5 @@
 export default function Experience(props) {
-  const { experience, handleChange, addForm } = props;
+  const { data, handleChange, addForm } = props;
   return (
     <>
       <h3>Experiences</h3>
@@ -7,7 +7,7 @@ export default function Experience(props) {
       <input
         type="text"
         id="company"
-        value={experience.company}
+        value={data.experience.company}
         onChange={handleChange}
         data-name="company"
         data-group="experience"
@@ -18,7 +18,7 @@ export default function Experience(props) {
         id="position"
         data-name="position"
         data-group="experience"
-        value={experience.position}
+        value={data.experience.position}
         onChange={handleChange}
       />
       <label htmlFor="task">Main task:</label>
@@ -26,7 +26,7 @@ export default function Experience(props) {
         id="task"
         data-name="task"
         data-group="experience"
-        value={experience.task}
+        value={data.experience.task}
         onChange={handleChange}
       />
       <label htmlFor="start">Start date:</label>
@@ -35,7 +35,7 @@ export default function Experience(props) {
         id="start"
         data-name="start"
         data-group="experience"
-        value={experience.start}
+        value={data.experience.start}
         onChange={handleChange}
       />
       <label htmlFor="end">End date:</label>
@@ -44,7 +44,7 @@ export default function Experience(props) {
         id="end"
         data-name="end"
         data-group="experience"
-        value={experience.end}
+        value={data.experience.end}
         onChange={handleChange}
       />
       <button type="button" onClick={addForm}>

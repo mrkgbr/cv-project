@@ -1,5 +1,5 @@
 export default function Education(props) {
-  const { addForm, education, handleChange } = props;
+  const { addForm, data, handleChange } = props;
   return (
     <>
       <h3>Educations</h3>
@@ -9,7 +9,7 @@ export default function Education(props) {
         id="schoolName"
         data-name="schoolName"
         data-group="education"
-        value={education.schoolName}
+        value={data.education.schoolName}
         onChange={handleChange}
       />
       <label htmlFor="studyTile">Title of study:</label>
@@ -18,7 +18,7 @@ export default function Education(props) {
         id="studyTitle"
         data-name="studyTitle"
         data-group="education"
-        value={education.studyTitle}
+        value={data.education.studyTitle}
         onChange={handleChange}
       />
       <label htmlFor="studyDate">Date of study:</label>
@@ -27,7 +27,7 @@ export default function Education(props) {
         id="studyDate"
         data-name="date"
         data-group="education"
-        value={education.date}
+        value={data.education.date}
         onChange={handleChange}
       />
       <button type="button" onClick={addForm}>
