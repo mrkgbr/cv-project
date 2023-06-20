@@ -1,12 +1,8 @@
 export default function ExpDisplay(props) {
-  const { data, handleChange, handleRemove } = props;
-  let newArr = data.experiences;
-  if (newArr.length === 0) {
-    return;
-  }
+  const { experiences, handleChange, handleRemove } = props;
   return (
     <ul>
-      {data.experiences.map((experience, index) => {
+      {experiences.map((experience, index) => {
         return (
           <li key={experience.id}>
             <h4>{index + 1}. experience:</h4>

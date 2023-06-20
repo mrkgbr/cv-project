@@ -17,7 +17,7 @@ export default function Form(props) {
           handleChange={props.handleInputChange}
         />
         <EduDisplay
-          data={props.data}
+          educations={props.educations}
           handleChange={props.handleDisplayedListChange}
           handleRemove={props.handleRemove}
         />
@@ -27,7 +27,7 @@ export default function Form(props) {
           handleChange={props.handleInputChange}
         />
         <ExpDisplay
-          data={props.data}
+          experiences={props.experiences}
           handleChange={props.handleDisplayedListChange}
           handleRemove={props.handleRemove}
         />

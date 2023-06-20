@@ -2,7 +2,6 @@ import Form from "./components/Form/Form";
 import uniqid from "uniqid";
 import View from "./components/View/View";
 import { useState } from "react";
-import { useEffect } from "react";
 
 const NewApp = () => {
   const [data, setData] = useState({
@@ -13,7 +12,6 @@ const NewApp = () => {
       studyTitle: "",
       date: "",
     },
-    educations: [],
     experience: {
       id: uniqid(),
       company: "",
@@ -22,13 +20,12 @@ const NewApp = () => {
       start: "",
       end: "",
     },
-    experiences: [],
   });
 
+  const [educations, setEducations] = useState([]);
+  const [experiences, setExperiences] = useState([]);
   const [main, setMain] = useState(true);
   const [button, setButton] = useState("Submit");
-  const [edu, setEdu] = useState(false);
-  const [exp, setExp] = useState(false);
 
   const onSubmit = () => {
     if (button === "Submit") {
@@ -45,13 +42,17 @@ const NewApp = () => {
       data.education.studyTitle &&
       data.education.date
     ) {
-      const newArray = data.educations.concat(data.education);
-      const newState = {
+      const newState = educations.concat(data.education);
+      setEducations(newState);
+      setData({
         ...data,
-        educations: newArray,
-      };
-      setData(newState);
-      setEdu(!edu);
+        education: {
+          id: uniqid(),
+          schoolName: "",
+          studyTitle: "",
+          date: "",
+        },
+      });
     } else {
       alert("Please fill all the inputs to add a new section.");
     }
@@ -65,13 +66,19 @@ const NewApp = () => {
       data.experience.start &&
       data.experience.end
     ) {
-      const newArray = data.experiences.concat(data.experience);
-      const newState = {
+      const newState = experiences.concat(data.experience);
+      setExperiences(newState);
+      setData({
         ...data,
-        experiences: newArray,
-      };
-      setData(newState);
-      setExp(!exp);
+        experience: {
+          id: uniqid(),
+          company: "",
+          position: "",
+          task: "",
+          start: "",
+          end: "",
+        },
+      });
     } else {
       alert("Please fill all the inputs to add a new section.");
     }
@@ -96,61 +103,48 @@ const NewApp = () => {
     const id = e.target.getAttribute("data-id");
     const group = e.target.getAttribute("data-group");
     const name = e.target.getAttribute("data-name");
-    const newState = data[group].map((obj) => {
-      console.log(obj);
-      if (obj.id === id) {
-        return { ...obj, [name]: e.target.value };
-      }
-      return obj;
-    });
 
-    const newObj = {
-      ...data,
-      [group]: newState,
-    };
+    if (group === "educations") {
+      const newState = educations.map((obj) => {
+        console.log(obj);
+        if (obj.id === id) {
+          return { ...obj, [name]: e.target.value };
+        }
+        return obj;
+      });
+      setEducations(newState);
+    }
 
-    setData(newObj);
+    if (group === "experiences") {
+      const newState = experiences.map((obj) => {
+        console.log(obj);
+        if (obj.id === id) {
+          return { ...obj, [name]: e.target.value };
+        }
+        return obj;
+      });
+      setExperiences(newState);
+    }
   };
 
   const handleRemove = (id, group) => {
-    const newState = data[group].filter((item) => item.id !== id);
-    setData({
-      ...data,
-      [group]: newState,
-    });
+    if (group === "educations") {
+      const newState = educations.filter((item) => item.id !== id);
+      setEducations(newState);
+    }
+    if (group === "experiences") {
+      const newState = experiences.filter((item) => item.id !== id);
+      setExperiences(newState);
+    }
   };
-
-  useEffect(() => {
-    setData({
-      ...data,
-      education: {
-        id: uniqid(),
-        schoolName: "",
-        studyTitle: "",
-        date: "",
-      },
-    });
-  }, [edu]);
-
-  useEffect(() => {
-    setData({
-      ...data,
-      experience: {
-        id: uniqid(),
-        company: "",
-        position: "",
-        task: "",
-        start: "",
-        end: "",
-      },
-    });
-  }, [exp]);
 
   if (main)
     return (
       <div className="App">
         <Form
           data={data}
+          educations={educations}
+          experiences={experiences}
           onAddEducation={onAddEducation}
           onAddExperience={onAddExperience}
           handleInputChange={handleInputChange}
@@ -167,8 +161,8 @@ const NewApp = () => {
         handleClick={onSubmit}
         buttonText={button}
         general={data.general}
-        educations={data.educations}
-        experiences={data.experiences}
+        educations={educations}
+        experiences={experiences}
       />
     </div>
   );
